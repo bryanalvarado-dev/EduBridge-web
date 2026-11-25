@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EduBridge</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="nav"><div class="container"><a class="logo" href="#inicio">EduBridge</a>
+    <button class="burger" id="mb" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="nav" aria-label="Principal"><a href="#cuenta">Cuenta</a><a href="#cursos">Cursos</a><a href="#recursos">Recursos</a><a href="#mentores">Mentores</a><a href="#panel">Mi panel</a><a href="#foro">Foro</a><a href="#planes">Planes</a><a href="#contacto">Contacto</a><a href="#cuenta" class="btn btn-nav" id="ses">Iniciar sesión</a></nav></div></header>
+<!-- ===== INICIO ===== -->
+<section id="inicio" class="hero-dark">
+  <div class="bg"><img src="imagenes/inicio-imagen.jpg" alt="Estudiantes universitarios estudiando juntos"></div>
+  <div class="container inner"><h1>Bienvenido a EduBridge</h1><p>Conecta universitarios con mentores de ciclos superiores para resolver dificultades o profundizar conocimientos.</p><a href="#mentores" class="btn">Buscar tutores</a></div>
+</section>
+<main id="main">
+
+  <!-- ===== CUENTA ===== -->
+  <section id="cuenta">
+    <h2>Tu cuenta</h2><div class="grid">
+      <form id="reg" novalidate><h3>Registro de estudiante</h3>
+        <label for="rn">Nombre completo</label><input id="rn" autocomplete="name">
+        <label for="re">Correo</label><input id="re" type="email" autocomplete="email">
+        <label for="rp">Contraseña (mínimo 6 caracteres)</label><input id="rp" type="password" autocomplete="new-password">
+        <label for="ru">Universidad</label><select id="ru"></select>
+        <label for="rc">Carrera</label><select id="rc"></select>
+        <label for="ry">Ciclo académico</label><select id="ry"></select>
+        <p class="err" id="rerr" role="alert"></p><button class="btn">Registrarme</button></form>
+      <div><form id="log" novalidate><h3>Iniciar sesión</h3>
+          <label for="le">Correo</label><input id="le" type="email" autocomplete="email">
+          <label for="lp">Contraseña</label><input id="lp" type="password" autocomplete="current-password">
+          <p class="err" id="lerr" role="alert"></p><button class="btn">Entrar</button> <button type="button" class="link" id="forg">Recuperar contraseña</button></form>
+        <form id="rec" hidden novalidate><h3>Recuperar contraseña</h3>
+          <label for="xe">Correo registrado</label><input id="xe" type="email">
+          <label for="xp">Nueva contraseña</label><input id="xp" type="password" autocomplete="new-password">
+          <p class="err" id="xerr" role="alert"></p><button class="btn">Cambiar contraseña</button></form></div></div>
+  </section>
+
+  <!-- ===== CURSOS ===== -->
+  <section id="cursos">
+    <h2>Cursos</h2><div class="filters">
+      <div><label for="cq">Buscar curso</label><input id="cq" type="search"></div>
+      <div><label for="cc">Carrera</label><select id="cc"></select></div>
+      <div><label for="cd">Dificultad</label><select id="cd"></select></div></div>
+    <p id="cn" class="note" aria-live="polite"></p><div id="cl" class="cards"></div>
+  </section>
+
+  <!-- ===== RECURSOS ===== -->
+  <section id="recursos">
+    <h2>Recursos académicos</h2><div class="filters">
+      <div><label for="rq">Buscar recurso</label><input id="rq" type="search"></div>
+      <div><label for="rd">Dificultad</label><select id="rd"></select></div></div>
+    <p id="rn2" class="note" aria-live="polite"></p><div id="rl" class="cards"></div>
+  </section>
+
+  <!-- ===== MENTORES ===== -->
+  <section id="mentores">
+    <h2>Mentores y tutorías</h2>
+    <div class="filters"><div><label for="mq">Buscar mentor</label><input id="mq" type="search" placeholder="Nombre o especialidad"></div></div>
+    <p id="mn" class="note" aria-live="polite"></p><div id="ml" class="cards"></div>
+    <form id="bk" novalidate><h3>Solicitar apoyo académico y agendar tutoría</h3>
+      <label for="bm">Mentor</label><select id="bm"></select>
+      <label for="bs">Horario disponible</label><select id="bs"></select>
+      <label for="bt">Tema en el que tienes dificultad</label><textarea id="bt" rows="3"></textarea>
+      <label class="chk"><input type="checkbox" id="br" checked> Enviarme un recordatorio automático antes de la tutoría</label>
+      <p class="err" id="berr" role="alert"></p><button class="btn">Agendar tutoría</button></form>
+  </section>
+
+  <!-- ===== PANEL ===== -->
+  <section id="panel">
+    <h2>Mi panel</h2><div class="grid">
+      <div class="box"><h3>Progreso</h3><div class="bar2" role="progressbar" aria-label="Progreso académico" aria-valuemin="0" aria-valuemax="100" id="pb"><i id="pf"></i></div><p id="pt"></p>
+        <h3>Insignias y logros</h3><ul id="bd"></ul>
+        <button class="btn" id="cert" type="button">Solicitar certificación de horas</button></div>
+      <div class="box"><h3>Historial de mentorías</h3><div id="hs"></div></div></div>
+    <h3>Ranking de mentores mejor valorados</h3><ol id="rk"></ol>
+  </section>
+
+  <!-- ===== FORO ===== -->
+  <section id="foro">
+    <h2>Foro de consultas</h2>
+    <div class="filters"><div><label for="fa">Asignatura</label><select id="fa"></select></div></div>
+    <div id="fl"></div>
+    <form id="fp" novalidate><label for="ft">Tu consulta</label><textarea id="ft" rows="3"></textarea>
+      <p class="err" id="ferr" role="alert"></p><button class="btn">Publicar consulta</button></form>
+  </section>
+
+  <!-- ===== PLANES ===== -->
+  <section id="planes">
+    <h2>Planes</h2><p class="note" id="pl" aria-live="polite"></p><div class="plans">
+      <article class="plan" data-p="Free"><h3>Free</h3><p class="price"><b>S/ 0</b> /mes</p><p class="pd">Para empezar a estudiar con apoyo.</p>
+        <ul><li>Cursos y recursos académicos</li><li>Foro de consultas</li><li>Guardar cursos y ver tu progreso</li><li class="no">Tutorías ilimitadas</li><li class="no">Certificación de horas</li></ul>
+        <button class="btn alt" data-plan="Free">Elegir Free</button></article>
+      <article class="plan pro" data-p="Premium"><span class="badge">Recomendado</span><h3>Premium</h3><p class="price"><b>S/ 19</b> /mes</p><p class="pd">Para sacarle el máximo a las mentorías.</p>
+        <ul><li>Todo lo del plan Free</li><li>Tutorías ilimitadas</li><li>Certificación de horas de mentoría</li></ul>
+        <button class="btn" data-plan="Premium">Elegir Premium</button></article></div>
+  </section>
+
+  <!-- ===== CONTACTO ===== -->
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form id="ct" novalidate><label for="ck">Motivo</label><select id="ck"><option>Solicitud de información</option><option>Soporte técnico</option></select>
+      <label for="cn2">Nombre</label><input id="cn2" autocomplete="name">
+      <label for="ce">Correo</label><input id="ce" type="email" autocomplete="email">
+      <label for="cm">Mensaje</label><textarea id="cm" rows="4"></textarea>
+      <p class="err" id="cerr" role="alert"></p><button class="btn">Enviar mensaje</button></form>
+  </section>
+</main>
+<footer class="eb-footer"><div class="eb-in"><div class="eb-top">
+      <div class="eb-brand"><a class="eb-logo" href="#inicio">EduBridge</a><p>Conecta universitarios de primeros ciclos con mentores estudiantes de ciclos superiores de universidades de Lima Metropolitana.</p>
+        <div class="eb-social"><a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><img src="imagenes/Facebook_LOGO.png" alt="Facebook"></a><a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="imagenes/linkedin.png" alt="LinkedIn"></a><a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><img src="imagenes/youtube.jpg" alt="YouTube"></a><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><img src="imagenes/instagram2.jpg" alt="Instagram"></a></div></div>
+      <div class="eb-col"><h4>Acerca de EduBridge</h4><a href="#inicio">Inicio</a><a href="#cursos">Cursos</a><a href="#planes">Planes</a></div>
+      <div class="eb-col"><h4>Comunidad</h4><a href="#mentores">Mentores</a><a href="#foro">Foro de consultas</a><a href="#panel">Mi panel</a></div>
+      <div class="eb-col"><h4>Ponte en contacto</h4><a href="#contacto">Contacto</a><a href="#contacto">Soporte</a></div></div>
+    <div class="eb-bottom"><p>© 2026 EduBridge</p></div></div></footer>
+<dialog id="mp" aria-labelledby="mpt">
+  <div class="mp-in">
+    <button type="button" class="mp-x" id="mpx" aria-label="Cerrar perfil">×</button>
+    <img id="mpi" alt="">
+    <h3 id="mpt"></h3>
+    <div id="mpb"></div>
+    <button type="button" class="btn" id="mpe" data-pick="">Elegir mentor</button>
+  </div>
+</dialog>
+<dialog id="cp" aria-labelledby="cpt">
+  <div class="cp-in">
+    <button type="button" class="mp-x" id="cpx" aria-label="Cerrar información del curso">×</button>
+    <img id="cpi" alt="">
+    <div class="cp-body">
+      <h3 id="cpt"></h3>
+      <div id="cpb"></div>
+    </div>
+  </div>
+</dialog>
+<dialog id="rsc" aria-labelledby="rst">
+  <div class="cp-in">
+    <button type="button" class="mp-x" id="rsx" aria-label="Cerrar recurso">×</button>
+    <div class="cp-body">
+      <h3 id="rst"></h3>
+      <div id="rsb"></div>
+    </div>
+  </div>
+</dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script></body></html>

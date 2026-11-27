@@ -4,7 +4,7 @@
 <a class="skip" href="#main">Saltar al contenido</a>
 <header class="nav"><div class="container"><a class="logo" href="#inicio">EduBridge</a>
     <button class="burger" id="mb" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
-    <nav class="nav-links" id="nav" aria-label="Principal"><a href="#cuenta">Cuenta</a><a href="#cursos">Cursos</a><a href="#recursos">Recursos</a><a href="#mentores">Mentores</a><a href="#panel">Mi panel</a><a href="#foro">Foro</a><a href="#planes">Planes</a><a href="#contacto">Contacto</a><a href="#cuenta" class="btn btn-nav" id="ses">Iniciar sesión</a></nav></div></header>
+    <nav class="nav-links" id="nav" aria-label="Principal"><a href="#cuenta">Cuenta</a><a href="#cursos">Cursos</a><a href="#recursos">Recursos</a><a href="#mentores">Mentores</a><a href="#ser-mentor">Ser mentor</a><a href="#panel">Mi panel</a><a href="#foro">Foro</a><a href="#planes">Planes</a><a href="#contacto">Contacto</a><a href="#cuenta" class="btn btn-nav" id="ses">Iniciar sesión</a></nav></div></header>
 <!-- ===== INICIO ===== -->
 <section id="inicio" class="hero-dark">
   <div class="bg"><img src="imagenes/inicio-imagen.jpg" alt="Estudiantes universitarios estudiando juntos"></div>
@@ -39,7 +39,12 @@
       <div><label for="cq">Buscar curso</label><input id="cq" type="search"></div>
       <div><label for="cc">Carrera</label><select id="cc"></select></div>
       <div><label for="cd">Dificultad</label><select id="cd"></select></div></div>
-    <p id="cn" class="note" aria-live="polite"></p><div id="cl" class="cards"></div>
+    <p id="cn" class="note" aria-live="polite"></p>
+    <div class="carousel">
+      <button type="button" class="car-btn prev" id="cprev" aria-label="Ver cursos anteriores">&#8249;</button>
+      <div id="cl" class="car" tabindex="0" role="region" aria-label="Lista de cursos (desliza o usa las flechas para ver más)"></div>
+      <button type="button" class="car-btn next" id="cnext" aria-label="Ver más cursos">&#8250;</button>
+    </div>
   </section>
 
   <!-- ===== RECURSOS ===== -->
@@ -54,13 +59,40 @@
   <section id="mentores">
     <h2>Mentores y tutorías</h2>
     <div class="filters"><div><label for="mq">Buscar mentor</label><input id="mq" type="search" placeholder="Nombre o especialidad"></div></div>
-    <p id="mn" class="note" aria-live="polite"></p><div id="ml" class="cards"></div>
+    <p id="mn" class="note" aria-live="polite"></p>
+    <div class="carousel">
+      <button type="button" class="car-btn prev" id="mprev" aria-label="Ver mentores anteriores">&#8249;</button>
+      <div id="ml" class="car" tabindex="0" role="region" aria-label="Lista de mentores (desliza o usa las flechas para ver más)"></div>
+      <button type="button" class="car-btn next" id="mnext" aria-label="Ver más mentores">&#8250;</button>
+    </div>
     <form id="bk" novalidate><h3>Solicitar apoyo académico y agendar tutoría</h3>
       <label for="bm">Mentor</label><select id="bm"></select>
-      <label for="bs">Horario disponible</label><select id="bs"></select>
+      <fieldset id="bw"><legend>Horarios disponibles</legend>
+        <div class="days" id="bwd"></div>
+        <div class="slots" id="bwh"></div>
+        <p class="note" id="bws" aria-live="polite"></p>
+      </fieldset>
       <label for="bt">Tema en el que tienes dificultad</label><textarea id="bt" rows="3"></textarea>
       <label class="chk"><input type="checkbox" id="br" checked> Enviarme un recordatorio automático antes de la tutoría</label>
       <p class="err" id="berr" role="alert"></p><button class="btn">Agendar tutoría</button></form>
+  </section>
+
+  <!-- ===== SER-MENTOR ===== -->
+  <section id="ser-mentor">
+    <h2>Conviértete en mentor</h2>
+    <p class="note">Si estás en ciclo 7, 8, 9 o 10, puedes dar tutorías a estudiantes de primeros ciclos y fijar tu precio por sesión.</p>
+    <p class="note" id="sm-msg" aria-live="polite"></p>
+    <form id="mf" novalidate hidden>
+      <h3>Postula como mentor</h3>
+      <label for="ms">Curso o área que dictarás</label><select id="ms"></select>
+      <fieldset><legend>Horarios disponibles (lunes a sábado, de 7:00 a 21:00)</legend>
+        <div class="days" id="mwd"></div>
+        <div class="slots" id="mwh"></div>
+        <p class="note">Todos los horarios empiezan disponibles. Toca uno para marcarlo como no disponible.</p>
+      </fieldset>
+      <label for="mpz">Precio por sesión (S/ 5 a 20)</label><input id="mpz" type="number" min="5" max="20" step="1" inputmode="numeric">
+      <p class="err" id="mferr" role="alert"></p><button class="btn">Quiero ser mentor</button>
+    </form>
   </section>
 
   <!-- ===== PANEL ===== -->
@@ -69,8 +101,9 @@
       <div class="box"><h3>Progreso</h3><div class="bar2" role="progressbar" aria-label="Progreso académico" aria-valuemin="0" aria-valuemax="100" id="pb"><i id="pf"></i></div><p id="pt"></p>
         <h3>Insignias y logros</h3><ul id="bd"></ul>
         <button class="btn" id="cert" type="button">Solicitar certificación de horas</button></div>
-      <div class="box"><h3>Historial de mentorías</h3><div id="hs"></div></div></div>
-    <h3>Ranking de mentores mejor valorados</h3><ol id="rk"></ol>
+      <div class="box"><h3>Historial de mentorías</h3><div id="hs" tabindex="0" role="region" aria-label="Historial de mentorías (desplázate para ver más)"></div></div></div>
+    <div class="box" id="mpan" hidden><h3>Panel de mentor</h3><div id="mpanb"></div></div>
+    <h3>Ranking de mentores mejor valorados</h3><ol id="rk" tabindex="0" aria-label="Ranking de mentores (desplázate para ver más)"></ol>
   </section>
 
   <!-- ===== FORO ===== -->
@@ -105,7 +138,10 @@
 </main>
 <footer class="eb-footer"><div class="eb-in"><div class="eb-top">
       <div class="eb-brand"><a class="eb-logo" href="#inicio">EduBridge</a><p>Conecta universitarios de primeros ciclos con mentores estudiantes de ciclos superiores de universidades de Lima Metropolitana.</p>
-        <div class="eb-social"><a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><img src="imagenes/Facebook_LOGO.png" alt="Facebook"></a><a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="imagenes/linkedin.png" alt="LinkedIn"></a><a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><img src="imagenes/youtube.jpg" alt="YouTube"></a><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><img src="imagenes/instagram2.jpg" alt="Instagram"></a></div></div>
+        <div class="eb-social"><a href="https://www.facebook.com/profile.php?id=61597219190630" target="_blank" rel="noopener" aria-label="Facebook"><img src="imagenes/Facebook_LOGO.png" alt="Facebook">
+        </a><a href="https://www.linkedin.com/in/edubridge-education-854600452" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="imagenes/linkedin.png" alt="LinkedIn">
+        </a><a href="https://www.youtube.com/channel/UCK3Sf2gZZahQXpb483N0MjA" target="_blank" rel="noopener" aria-label="YouTube"><img src="imagenes/youtube.jpg" alt="YouTube">
+        </a><a href="https://www.instagram.com/upcedubridge?avpt=MTlmYjZwb3FpMnB2cg%3D%3D" target="_blank" rel="noopener" aria-label="Instagram"><img src="imagenes/instagram2.jpg" alt="Instagram"></a></div></div>
       <div class="eb-col"><h4>Acerca de EduBridge</h4><a href="#inicio">Inicio</a><a href="#cursos">Cursos</a><a href="#planes">Planes</a></div>
       <div class="eb-col"><h4>Comunidad</h4><a href="#mentores">Mentores</a><a href="#foro">Foro de consultas</a><a href="#panel">Mi panel</a></div>
       <div class="eb-col"><h4>Ponte en contacto</h4><a href="#contacto">Contacto</a><a href="#contacto">Soporte</a></div></div>

@@ -456,7 +456,7 @@ summary {
 }
 
 /* ===== RESPONSIVE Y ACCESIBILIDAD ===== */
-@media(max-width:1020px) {
+@media(max-width:1120px) {
   .burger {
     display: block;
   }
@@ -923,4 +923,204 @@ summary {
   width: 100%;
   margin: 12px 0;
   border-radius: var(--radius);
+}
+
+/* ===== SER MENTOR ===== */
+#mf {
+  max-width: 560px;
+  margin-top: 16px;
+}
+form fieldset {
+  margin: 14px 0 0;
+  padding: 10px 14px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+form legend {
+  padding: 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+#mpan {
+  margin-top: 24px;
+}
+#mpan h4 {
+  margin: 16px 0 6px;
+}
+#mpan .btn {
+  margin-right: 8px;
+}
+
+/* ===== AGENDA DE HORARIOS (días y horas) ===== */
+.days {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin: 10px 0;
+}
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 6px;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.day span {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.day b {
+  font-size: 20px;
+}
+.day.on {
+  color: #fff;
+  background: var(--black);
+  border-color: var(--black);
+}
+.day.on span {
+  color: #d0d0d0;
+}
+.slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+.slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 6px;
+  font: inherit;
+  border: 2px solid;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.slot b {
+  font-size: 16px;
+}
+.slot span {
+  font-size: 12px;
+}
+.slot.ok {
+  color: #0f7a40;
+  background: #fff;
+  border-color: #a7e3c0;
+}
+.slot.sel {
+  color: #0b5f31;
+  background: #e9f9f0;
+  border-color: #0f7a40;
+}
+.slot.res {
+  color: var(--err);
+  background: #fdeceb;
+  border-color: #f3c0bc;
+}
+.slot.off {
+  color: #6b6b6b;
+  background: #f3f3f3;
+  border-color: #e0e0e0;
+}
+.slot:disabled,
+div.slot {
+  cursor: default;
+}
+@media (max-width: 600px) {
+  .days {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===== LISTAS CON DESPLAZAMIENTO (historial y ranking) ===== */
+#hs {
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 8px;
+  overscroll-behavior: contain;
+}
+#rk {
+  max-height: 440px;
+  overflow-y: auto;
+  padding: 6px;
+  overscroll-behavior: contain;
+}
+
+/* ===== CARRUSEL DE CURSOS ===== */
+.carousel {
+  position: relative;
+}
+.car {
+  display: flex;
+  gap: 20px;
+  padding: 8px 2px 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+.car > .card {
+  flex: 0 0 calc((100% - 60px) / 4);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+.car-btn {
+  position: absolute;
+  top: calc(50% - 22px);
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  cursor: pointer;
+}
+.car-btn.prev {
+  left: -22px;
+}
+.car-btn.next {
+  right: -22px;
+}
+.car-btn:hover {
+  background: var(--soft);
+}
+.car-btn:disabled {
+  visibility: hidden;
+}
+.card > .cph {
+  display: grid;
+  place-items: center;
+  margin: 0 0 12px;
+  aspect-ratio: 16 / 9;
+  font-size: 13px;
+  color: var(--muted);
+  background: var(--soft);
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 1000px) {
+  .car > .card {
+    flex-basis: calc((100% - 20px) / 2);
+  }
+}
+@media (max-width: 600px) {
+  .car > .card {
+    flex-basis: 82%;
+  }
+  .car-btn.prev {
+    left: -10px;
+  }
+  .car-btn.next {
+    right: -10px;
+  }
 }

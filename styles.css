@@ -894,7 +894,9 @@ summary {
 }
 
 /* ===== RECURSO (ventana emergente con imagen) ===== */
-.card[data-res] {
+.card[data-res],
+.card[data-course],
+.card[data-prof] {
   cursor: pointer;
 }
 .card > .ract {

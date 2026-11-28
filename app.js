@@ -211,7 +211,7 @@ function draw(){
   const r=cursos.filter(x=>x.n.toLowerCase().includes(q)&&(!c||x.c===c)&&(!d||x.d===d));
   $("#cn").textContent=r.length?r.length+" cursos encontrados.":"No hay cursos con esos filtros. Prueba quitar alguno.";
   const sl=$("#cl").scrollLeft;
-  $("#cl").innerHTML=r.map(x=>`<article class="card">${x.i?`<img src="imagenes/${x.i}" alt="Imagen del curso ${e(x.n)}">`:`<div class="cph" role="img" aria-label="Imagen del curso ${e(x.n)} (próximamente)"><span>Imagen próximamente</span></div>`}<h3>${e(x.n)}</h3><div class="tags"><span class="tag">${e(x.c)}</span><span class="tag">${x.d}</span></div><button type="button" class="vlink" data-course="${e(x.n)}">Ver información del curso</button><button class="btn alt" data-save="${e(x.n)}" aria-pressed="${sv.includes(x.n)}">${sv.includes(x.n)?"Guardado":"Guardar curso"}</button></article>`).join("");
+  $("#cl").innerHTML=r.map(x=>`<article class="card" data-course="${e(x.n)}">${x.i?`<img src="imagenes/${x.i}" alt="Imagen del curso ${e(x.n)}">`:`<div class="cph" role="img" aria-label="Imagen del curso ${e(x.n)} (próximamente)"><span>Imagen próximamente</span></div>`}<h3>${e(x.n)}</h3><div class="tags"><span class="tag">${e(x.c)}</span><span class="tag">${x.d}</span></div><button type="button" class="vlink" data-course="${e(x.n)}">Ver información del curso</button><button class="btn alt" data-save="${e(x.n)}" aria-pressed="${sv.includes(x.n)}">${sv.includes(x.n)?"Guardado":"Guardar curso"}</button></article>`).join("");
   $("#cl").scrollLeft=sl;
   carUpdate();
   const q2=$("#rq").value.toLowerCase(),
@@ -223,7 +223,7 @@ function draw(){
     r3=ments.filter(m=>(m.n+m.s).toLowerCase().includes(q3));
   $("#mn").textContent=r3.length?r3.length+" mentores disponibles.":"No encontramos mentores con esa búsqueda.";
   const slm=$("#ml").scrollLeft;
-  $("#ml").innerHTML=r3.map(m=>`<article class="card"><img src="${pic(m)}" alt="Foto de ${e(m.n)}, mentor de ${e(m.s)}"><h3>${e(m.n)}</h3><div class="tags"><span class="tag">${e(m.u)}</span><span class="tag">${m.nw?"Nuevo":"★ "+m.r}</span></div><p>Disponibilidad: <span class="tag">Lun a Sáb</span><span class="tag">07:00 a 21:00</span></p><button type="button" class="vlink" data-prof="${e(m.n)}">Ver perfil del mentor</button>${mi(m)?`<p class="note">Este es tu perfil de mentor.</p>`:`<button class="btn" data-pick="${e(m.n)}">Elegir mentor</button>`}</article>`).join("");
+  $("#ml").innerHTML=r3.map(m=>`<article class="card" data-prof="${e(m.n)}"><img src="${pic(m)}" alt="Foto de ${e(m.n)}, mentor de ${e(m.s)}"><h3>${e(m.n)}</h3><div class="tags"><span class="tag">${e(m.u)}</span><span class="tag">${m.nw?"Nuevo":"★ "+m.r}</span></div><p>Disponibilidad: <span class="tag">Lun a Sáb</span><span class="tag">07:00 a 21:00</span></p><button type="button" class="vlink" data-prof="${e(m.n)}">Ver perfil del mentor</button>${mi(m)?`<p class="note">Este es tu perfil de mentor.</p>`:`<button class="btn" data-pick="${e(m.n)}">Elegir mentor</button>`}</article>`).join("");
   $("#ml").scrollLeft=slm;
   carUpdateM();
   const cur=$("#bm").value;
@@ -435,8 +435,12 @@ const carUpdate=mkCar("#cl","#cprev","#cnext"),
 
 // ===== 7. BOTONES: guardar, reportar, elegir mentor, planes, completar tutoría =====
 document.addEventListener("click",ev=>{
-  const card=ev.target.closest(".card[data-res]");
-  if(card&&!ev.target.closest("button"))openResource(card.dataset.res);
+  const card=ev.target.closest(".card[data-res],.card[data-course],.card[data-prof]");
+  if(card&&!ev.target.closest("button")){
+    if(card.dataset.res)openResource(card.dataset.res);
+    else if(card.dataset.course)openCourse(card.dataset.course);
+    else openProfile(card.dataset.prof)
+  }
   const b=ev.target.closest("button");
   if(!b)return;
   if(b.dataset.day){
